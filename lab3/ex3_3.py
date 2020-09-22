@@ -79,12 +79,13 @@ def nose(x0, y0, r_nose, color_nose, sc):
     polygon(sc, BLC, [(x1, y1), (x2, y2), (x3, y3)], 1)
 
 
-def face(x0, y0, r_nose, y_nose, w_mouth, h_mouth, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, x_eye, y_eye, y_mouth, color_mouth,
+def face(x0, y0, r_nose, y_nose, w_mouth, h_mouth, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, x_eye, y_eye, y_mouth,
+         color_mouth,
          color_pup, color_eye, color_nose, sc):
     mouth(x0, y0 + y_mouth, h_mouth, w_mouth, color_mouth, sc)
     eye(x0 - x_eye, y0 - y_eye, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, color_pup, color_eye, sc)
     eye(x0 + x_eye, y0 - y_eye, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, color_pup, color_eye, sc)
-    nose(x0, y0+y_nose, r_nose, color_nose, sc)
+    nose(x0, y0 + y_nose, r_nose, color_nose, sc)
 
 
 def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
@@ -118,15 +119,17 @@ def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
     circle(sc, SKN, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
     circle(sc, BLC, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size), 1)
     hair(int(size * 0.2), int(size * 0.04), 60, 10, int(0.5 * size) + x0, int(0.6 * size) + y0, sc, color_hair, BLC)
-    face(int(0.5 * size) + x0, int(0.6 * size) + y0, int(0.02 * size), int(0.02 * size), int(0.23 * size), int(0.08 * size), int(0.012 * size), int(0.009 * size), int(0.048 * size), int(0.045 * size), int(0.005 * size), int(0.065 * size), int(0.045 * size), int(0.06 * size), RED, BLC, color_eyes, BRW,
+    face(int(0.5 * size) + x0, int(0.6 * size) + y0, int(0.02 * size), int(0.02 * size), int(0.23 * size),
+         int(0.08 * size), int(0.012 * size), int(0.009 * size), int(0.048 * size), int(0.045 * size),
+         int(0.005 * size), int(0.065 * size), int(0.045 * size), int(0.06 * size), RED, BLC, color_eyes, BRW,
          sc)
 
 
 pygame.init()
 
 FPS = 30
-SIZE = 800
-screen = pygame.display.set_mode((SIZE, SIZE))
+SIZE = 600
+screen = pygame.display.set_mode((int(1.9 * SIZE), SIZE))
 
 WHT = (255, 255, 255)
 YLW = (255, 255, 0)
@@ -142,8 +145,9 @@ PNK = (233, 0, 237)
 GGR = (171, 191, 171)
 LOR = (255, 215, 0)
 screen.fill(WHT)
-boy_next_door(PNK, GBL, ORG, SIZE, screen, 0, 0)
-poster(screen, int(SIZE * 0.5), int(SIZE * 0.17), int(SIZE * 0.98), int(SIZE * 0.09), "PYTHON is AMAIZING", GRN, BLC)
+boy_next_door(LOR, GGR, DGN, SIZE, screen, int(SIZE * 0.015), 0)
+boy_next_door(PNK, GBL, ORG, SIZE, screen, int(SIZE * 0.885), 0)
+poster(screen, int(SIZE * 0.95), int(SIZE * 0.13), int(SIZE * 1.85), int(SIZE * 0.13), "PYTHON is REALLY AMAIZING!", GRN, BLC)
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
