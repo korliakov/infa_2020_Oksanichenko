@@ -91,7 +91,7 @@ def face(x0, y0, r_nose, y_nose, w_mouth, h_mouth, r_pup_x, r_pup_y, r_eye_x, r_
     nose(x0, y0 + y_nose, r_nose, color_nose, sc)
 
 
-def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
+def boy_next_door(color_hair, color_eyes, color_t_shirt, color_skin, size, sc, x0, y0):
     angle_sh = 70
     angle_pl_sh = 40
     circle(sc, color_t_shirt, [int(0.5 * size) + x0, int(1 * size) + y0], int(0.3 * size))
@@ -105,7 +105,7 @@ def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
         A1.append((x1 + int(0.1 * size) * np.cos((np.pi / 180) * (angle_sh + 73 * i)),
                    y1 - int(0.1 * size) * np.sin((np.pi / 180) * (angle_sh + 73 * i))))
 
-    ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 4, SKN)
+    ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 4, color_skin)
     ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 4, BLC, 1)
     polygon(sc, color_t_shirt, A1)
     polygon(sc, BLC, A1, 1)
@@ -113,13 +113,13 @@ def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
     for i in range(5):
         A2.append((x2 - int(0.1 * size) * np.cos((np.pi / 180) * (angle_sh + 73 * i)),
                    y2 - int(0.1 * size) * np.sin((np.pi / 180) * (angle_sh + 73 * i))))
-    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 4, SKN)
-    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 4, BLC, 1)
+    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 3, color_skin)
+    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 3, BLC, 1)
     polygon(sc, color_t_shirt, A2)
     polygon(sc, BLC, A2, 1)
-    circle(sc, SKN, [int(0.5 * size - 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
+    circle(sc, color_skin, [int(0.5 * size - 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
     circle(sc, BLC, [int(0.5 * size - 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size), 1)
-    circle(sc, SKN, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
+    circle(sc, color_skin, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
     circle(sc, BLC, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size), 1)
     hair(int(size * 0.2), int(size * 0.04), 60, 10, int(0.5 * size) + x0, int(0.6 * size) + y0, sc, color_hair, BLC)
     face(int(0.5 * size) + x0, int(0.6 * size) + y0, int(0.02 * size), int(0.02 * size), int(0.23 * size),
@@ -148,7 +148,7 @@ PNK = (233, 0, 237)
 GGR = (171, 191, 171)
 LOR = (255, 215, 0)
 screen.fill(WHT)
-boy_next_door(PNK, GBL, ORG, SIZE, screen, 0, 0)
+boy_next_door(PNK, GBL, ORG, SKN, SIZE, screen, 0, 0)
 poster(screen, int(SIZE * 0.5), int(SIZE * 0.17), int(SIZE * 0.98), int(SIZE * 0.09), "PYTHON is AMAZING", GRN, BLC)
 pygame.display.update()
 clock = pygame.time.Clock()
