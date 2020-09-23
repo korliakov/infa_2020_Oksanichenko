@@ -147,7 +147,7 @@ LOR = (255, 215, 0)
 screen.fill(WHT)
 boy_next_door(LOR, GGR, DGN, SIZE, screen, int(SIZE * 0.015), 0)
 boy_next_door(PNK, GBL, ORG, SIZE, screen, int(SIZE * 0.885), 0)
-poster(screen, int(SIZE * 0.95), int(SIZE * 0.13), int(SIZE * 1.85), int(SIZE * 0.13), "PYTHON is REALLY AMAIZING!",
+poster(screen, int(SIZE * 0.95), int(SIZE * 0.13), int(SIZE * 1.85), int(SIZE * 0.13), "PYTHON is REALLY AMAZING!",
        GRN, BLC)
 pygame.display.update()
 clock = pygame.time.Clock()
