@@ -33,7 +33,7 @@ def poster(sc, x0, y0, w, h, s, back_col, text_col):
     ang_rect(sc, x0, y0, w, h, 0, back_col)
     ang_rect(sc, x0, y0, w, h, 0, BLC, 1)
     f1 = pygame.font.Font(None, 100)
-    text1 = f1.render(s, 1, (0, 0, 0))
+    text1 = f1.render(s, 1, text_col)
     place = text1.get_rect(center=(x0, y0))
     sc.blit(text1, place)
 
@@ -147,7 +147,8 @@ LOR = (255, 215, 0)
 screen.fill(WHT)
 boy_next_door(LOR, GGR, DGN, SIZE, screen, int(SIZE * 0.015), 0)
 boy_next_door(PNK, GBL, ORG, SIZE, screen, int(SIZE * 0.885), 0)
-poster(screen, int(SIZE * 0.95), int(SIZE * 0.13), int(SIZE * 1.85), int(SIZE * 0.13), "PYTHON is REALLY AMAIZING!", GRN, BLC)
+poster(screen, int(SIZE * 0.95), int(SIZE * 0.13), int(SIZE * 1.85), int(SIZE * 0.13), "PYTHON is REALLY AMAIZING!",
+       GRN, BLC)
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
