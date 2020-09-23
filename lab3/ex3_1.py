@@ -30,7 +30,6 @@ x5e1 = x4e1 + np.sin((np.pi / 180) * 30) * 10
 y5e1 = y4e1 + np.cos((np.pi / 180) * 30) * 10
 x6e1 = x5e1 - np.cos((np.pi / 180) * 30) * 40
 y6e1 = y5e1 + np.sin((np.pi / 180) * 30) * 40
-print(np.sin(30))
 Eyebrown1 = [(x1e1, y1e1), (x2e1, y2e1), (x3e1, y3e1), (x4e1, y4e1), (x5e1, y5e1), (x6e1, y6e1)]
 
 x1e2 = 230 + np.sin((np.pi / 180) * 30) * 30

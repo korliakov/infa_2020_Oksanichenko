@@ -15,14 +15,17 @@ def ang_rect(sc, x0, y0, w, h, angle, color, w1=0):
     polygon(sc, color, [(x1, y1), (x2, y2), (x3, y3), (x4, y4)], w1)
 
 
-def ang_rect2(sc, x0, y0, w, h, angle, num, color, w1=0):
+def ang_rect2(sc, x0, y0, w, h, angle, quarter
+              , color, w1=0):
+    """draw rectangle, using coordinates of one apex We understand which one thanks to 'quarter'. This variable says
+    quarter, where exist our apex. """
     by = 1
-    if num > 1:
+    if quarter > 2:
         by = -1
     bx = 1
-    if num == 1:
+    if quarter == 2:
         bx = -1
-    if num == 2:
+    if quarter == 3:
         bx = -1
     x0 = x0 - (bx * w * 0.5 * np.cos((np.pi / 180) * angle) - by * h * 0.5 * np.sin((np.pi / 180) * angle))
     y0 = y0 - (by * h * 0.5 * np.cos((np.pi / 180) * angle) + bx * w * 0.5 * np.sin((np.pi / 180) * angle))
@@ -33,7 +36,7 @@ def poster(sc, x0, y0, w, h, s, back_col, text_col):
     ang_rect(sc, x0, y0, w, h, 0, back_col)
     ang_rect(sc, x0, y0, w, h, 0, BLC, 1)
     f1 = pygame.font.Font(None, 100)
-    text1 = f1.render(s, 1, (0, 0, 0))
+    text1 = f1.render(s, 1, text_col)
     place = text1.get_rect(center=(x0, y0))
     sc.blit(text1, place)
 
@@ -79,12 +82,13 @@ def nose(x0, y0, r_nose, color_nose, sc):
     polygon(sc, BLC, [(x1, y1), (x2, y2), (x3, y3)], 1)
 
 
-def face(x0, y0, r_nose, y_nose, w_mouth, h_mouth, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, x_eye, y_eye, y_mouth, color_mouth,
+def face(x0, y0, r_nose, y_nose, w_mouth, h_mouth, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, x_eye, y_eye, y_mouth,
+         color_mouth,
          color_pup, color_eye, color_nose, sc):
     mouth(x0, y0 + y_mouth, h_mouth, w_mouth, color_mouth, sc)
     eye(x0 - x_eye, y0 - y_eye, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, color_pup, color_eye, sc)
     eye(x0 + x_eye, y0 - y_eye, r_pup_x, r_pup_y, r_eye_x, r_eye_y, dy_pup, color_pup, color_eye, sc)
-    nose(x0, y0+y_nose, r_nose, color_nose, sc)
+    nose(x0, y0 + y_nose, r_nose, color_nose, sc)
 
 
 def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
@@ -101,16 +105,16 @@ def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
         A1.append((x1 + int(0.1 * size) * np.cos((np.pi / 180) * (angle_sh + 73 * i)),
                    y1 - int(0.1 * size) * np.sin((np.pi / 180) * (angle_sh + 73 * i))))
 
-    ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 3, SKN)
-    ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 3, BLC, 1)
+    ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 4, SKN)
+    ang_rect2(sc, x1, y1, int(0.63 * size), int(0.034 * size), +73, 4, BLC, 1)
     polygon(sc, color_t_shirt, A1)
     polygon(sc, BLC, A1, 1)
     A2 = []
     for i in range(5):
         A2.append((x2 - int(0.1 * size) * np.cos((np.pi / 180) * (angle_sh + 73 * i)),
                    y2 - int(0.1 * size) * np.sin((np.pi / 180) * (angle_sh + 73 * i))))
-    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 2, SKN)
-    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 2, BLC, 1)
+    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 4, SKN)
+    ang_rect2(sc, x2, y2, int(0.63 * size), int(0.034 * size), -73, 4, BLC, 1)
     polygon(sc, color_t_shirt, A2)
     polygon(sc, BLC, A2, 1)
     circle(sc, SKN, [int(0.5 * size - 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
@@ -118,7 +122,9 @@ def boy_next_door(color_hair, color_eyes, color_t_shirt, size, sc, x0, y0):
     circle(sc, SKN, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size))
     circle(sc, BLC, [int(0.5 * size + 0.43 * size) + x0, int(0.5 * size - 0.3 * size) + y0], int(0.042 * size), 1)
     hair(int(size * 0.2), int(size * 0.04), 60, 10, int(0.5 * size) + x0, int(0.6 * size) + y0, sc, color_hair, BLC)
-    face(int(0.5 * size) + x0, int(0.6 * size) + y0, int(0.02 * size), int(0.02 * size), int(0.23 * size), int(0.08 * size), int(0.012 * size), int(0.009 * size), int(0.048 * size), int(0.045 * size), int(0.005 * size), int(0.065 * size), int(0.045 * size), int(0.06 * size), RED, BLC, color_eyes, BRW,
+    face(int(0.5 * size) + x0, int(0.6 * size) + y0, int(0.02 * size), int(0.02 * size), int(0.23 * size),
+         int(0.08 * size), int(0.012 * size), int(0.009 * size), int(0.048 * size), int(0.045 * size),
+         int(0.005 * size), int(0.065 * size), int(0.045 * size), int(0.06 * size), RED, BLC, color_eyes, BRW,
          sc)
 
 
@@ -143,7 +149,7 @@ GGR = (171, 191, 171)
 LOR = (255, 215, 0)
 screen.fill(WHT)
 boy_next_door(PNK, GBL, ORG, SIZE, screen, 0, 0)
-poster(screen, int(SIZE * 0.5), int(SIZE * 0.17), int(SIZE * 0.98), int(SIZE * 0.09), "PYTHON is AMAIZING", GRN, BLC)
+poster(screen, int(SIZE * 0.5), int(SIZE * 0.17), int(SIZE * 0.98), int(SIZE * 0.09), "PYTHON is AMAZING", GRN, BLC)
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
